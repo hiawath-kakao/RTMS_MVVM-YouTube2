@@ -1,0 +1,55 @@
+﻿<Window x:Class="RTMS_MVVM.View.frmLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:ViewModel="clr-namespace:RTMS_MVVM.ViewModel"             
+        Title="Message" AllowsTransparency="true" Height="350" Width="650" 	
+		WindowStartupLocation="CenterScreen"  Margin="10" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" 
+		WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}" Foreground="Black" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Storyboard x:Key="StoryboardEntrance">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="{x:Null}" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="230" KeySpline="1,0,0,1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="-30" KeySpline="1,0,0,1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0" KeySpline="0,0,0,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+        </TransformGroup>
+    </Window.RenderTransform>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardEntrance}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="580*"/>
+            <ColumnDefinition Width="20*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle RadiusX="10" RadiusY="10" Fill="{DynamicResource MainGradientBrush}">
+            <Rectangle.Effect>
+                <DropShadowEffect Direction="-45" ShadowDepth="15" Opacity="0.9" BlurRadius="10"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Border BorderBrush="#FF534F4F" BorderThickness="5" Margin="0,0,8,8" Grid.ColumnSpan="2" CornerRadius="10" Background="Black">
+            <Border.Effect>
+                <DropShadowEffect Direction="-45" ShadowDepth="30" BlurRadius="15" Opacity="0.5"/>
+            </Border.Effect>
+        </Border>
+        <TextBlock HorizontalAlignment="Center" Margin="12,69,0,191" x:Name="textMessage" Text="PASSWORD" Width="568" FontSize="32" FontFamily="굴림체" FontStyle="Normal" FontWeight="Bold" TextWrapping="Wrap" FontStretch="UltraExpanded" TextAlignment="Center" TextTrimming="None" UseLayoutRounding="False" Foreground="White" />
+        <TextBox Text="{Binding PASSWORD}" Margin="96,134,145,105" Name="txtPassword" FontSize="35" Visibility="Visible"   ToolTip="Password" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White"/>
+        <Button Content="CONFIRM" Command="{x:Static ViewModel:LogicViewModel.LoginConfirmCommand}" CommandParameter="{Binding ElementName=ModelWindow}" Height="61" HorizontalAlignment="Left" Margin="446,134,0,0" Name="btnOK" VerticalAlignment="Top" Width="100" FontSize="20" IsDefault="True" />
+    </Grid>
+</Window>

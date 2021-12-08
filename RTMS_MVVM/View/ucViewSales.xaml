@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="RTMS_MVVM.View.ucViewSales"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModel="clr-namespace:RTMS_MVVM.ViewModel"                          
+             mc:Ignorable="d" Loaded="UserControlLoaded">
+
+    <Border BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" BorderBrush="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding NAME}" Margin="5" Foreground="White"/>
+            <Button Content="-" Command="{x:Static ViewModel:LogicViewModel.MinusCommand}" CommandParameter="{Binding}" Grid.Column="1" FontSize="15"/>
+            <Border BorderThickness="1" CornerRadius="3" Grid.Column="2" BorderBrush="White" Margin="4">
+                <TextBlock Text="{Binding EA}" Margin="5"  Foreground="White" HorizontalAlignment="Right"/>
+            </Border>
+            <Button Content="+" Command="{x:Static ViewModel:LogicViewModel.PlusCommand}" CommandParameter="{Binding}" Grid.Column="3" FontSize="15"/>
+            <TextBlock Text="{Binding EA_PRICE}" Margin="5" Grid.Column="4" Foreground="White" HorizontalAlignment="Right"/>
+            <Button Content="취소" Command="{x:Static ViewModel:LogicViewModel.DelCommand}" CommandParameter="{Binding}" Grid.Column="5"/>
+        </Grid>
+    </Border>
+</UserControl>
